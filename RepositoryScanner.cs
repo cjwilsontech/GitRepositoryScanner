@@ -52,10 +52,14 @@ namespace ProjectStatFinder {
 
 					// Get file info.
 					FileInfo file = new FileInfo(gitPath + "/" + e.Path);
-					if (!fileTypeCount.ContainsKey(file.Extension)) {
-						fileTypeCount.Add(file.Extension, 1);
+					string extension = file.Extension;
+					if (extension == string.Empty)
+						extension = "<no extension>";
+
+					if (!fileTypeCount.ContainsKey(extension)) {
+						fileTypeCount.Add(extension, 1);
 					} else {
-						++fileTypeCount[file.Extension];
+						++fileTypeCount[extension];
 					}
 
 					// Update metrics.
