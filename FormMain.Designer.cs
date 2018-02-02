@@ -36,6 +36,8 @@
 			this.lblFileCount = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
+			this.label4 = new System.Windows.Forms.Label();
+			this.lblStatus = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataFileExtensions)).BeginInit();
@@ -53,15 +55,17 @@
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.lblStatus);
+			this.groupBox1.Controls.Add(this.label4);
 			this.groupBox1.Controls.Add(this.linkPath);
 			this.groupBox1.Controls.Add(this.label1);
 			this.groupBox1.Controls.Add(this.btnBrowseDirectory);
 			this.groupBox1.Location = new System.Drawing.Point(13, 13);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(341, 51);
+			this.groupBox1.Size = new System.Drawing.Size(362, 78);
 			this.groupBox1.TabIndex = 3;
 			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "Project Directory";
+			this.groupBox1.Text = "Repository";
 			// 
 			// linkPath
 			// 
@@ -96,9 +100,9 @@
 			this.groupBox2.Controls.Add(this.lblFileCount);
 			this.groupBox2.Controls.Add(this.label3);
 			this.groupBox2.Controls.Add(this.label2);
-			this.groupBox2.Location = new System.Drawing.Point(13, 71);
+			this.groupBox2.Location = new System.Drawing.Point(13, 97);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(341, 178);
+			this.groupBox2.Size = new System.Drawing.Size(362, 223);
 			this.groupBox2.TabIndex = 4;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Stats";
@@ -118,7 +122,7 @@
 			this.dataFileExtensions.Name = "dataFileExtensions";
 			this.dataFileExtensions.ReadOnly = true;
 			this.dataFileExtensions.RowHeadersVisible = false;
-			this.dataFileExtensions.Size = new System.Drawing.Size(168, 153);
+			this.dataFileExtensions.Size = new System.Drawing.Size(189, 198);
 			this.dataFileExtensions.TabIndex = 5;
 			// 
 			// ColFileExtension
@@ -143,7 +147,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.lblProjectSize.AutoSize = true;
-			this.lblProjectSize.Location = new System.Drawing.Point(252, 42);
+			this.lblProjectSize.Location = new System.Drawing.Point(273, 41);
 			this.lblProjectSize.Name = "lblProjectSize";
 			this.lblProjectSize.Size = new System.Drawing.Size(41, 13);
 			this.lblProjectSize.TabIndex = 4;
@@ -155,7 +159,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.lblFileCount.AutoSize = true;
-			this.lblFileCount.Location = new System.Drawing.Point(252, 20);
+			this.lblFileCount.Location = new System.Drawing.Point(273, 19);
 			this.lblFileCount.Name = "lblFileCount";
 			this.lblFileCount.Size = new System.Drawing.Size(34, 13);
 			this.lblFileCount.TabIndex = 3;
@@ -167,7 +171,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(180, 20);
+			this.label3.Location = new System.Drawing.Point(201, 19);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(57, 13);
 			this.label3.TabIndex = 2;
@@ -179,21 +183,41 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(180, 42);
+			this.label2.Location = new System.Drawing.Point(201, 41);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(66, 13);
 			this.label2.TabIndex = 0;
 			this.label2.Text = "Project Size:";
 			// 
-			// Form1
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(7, 49);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(40, 13);
+			this.label4.TabIndex = 4;
+			this.label4.Text = "Status:";
+			// 
+			// lblStatus
+			// 
+			this.lblStatus.AutoSize = true;
+			this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblStatus.ForeColor = System.Drawing.Color.Red;
+			this.lblStatus.Location = new System.Drawing.Point(46, 49);
+			this.lblStatus.Name = "lblStatus";
+			this.lblStatus.Size = new System.Drawing.Size(63, 13);
+			this.lblStatus.TabIndex = 5;
+			this.lblStatus.Text = "Not found";
+			// 
+			// FormMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(365, 261);
+			this.ClientSize = new System.Drawing.Size(386, 332);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
-			this.Name = "Form1";
-			this.Text = "Form1";
+			this.Name = "FormMain";
+			this.Text = "Repository Stat Finder";
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.groupBox2.ResumeLayout(false);
@@ -218,6 +242,8 @@
 		private System.Windows.Forms.DataGridView dataFileExtensions;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ColFileExtension;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ColFileCount;
+		private System.Windows.Forms.Label lblStatus;
+		private System.Windows.Forms.Label label4;
 	}
 }
 

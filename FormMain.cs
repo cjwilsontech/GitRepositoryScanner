@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -23,12 +24,22 @@ namespace ProjectStatFinder {
 		}
 
 		private async void getProjectStats() {
+			// Clear the previous data.
+			dataFileExtensions.Rows.Clear();
+
+			lblStatus.ForeColor = DefaultForeColor;
+			lblStatus.Text = "Scanning...";
+
 			// Create a new project scanner.
 			ProjectScanner scanner = new ProjectScanner();
 
 			try {
 				// Scan all repositories we want to count (just one, in this case).
 				await scanner.ScanRepository(linkPath.Text);
+
+				// Update the status of the repository.
+				lblStatus.ForeColor = Color.Green;
+				lblStatus.Text = "Found";
 
 				// Loop through the results and fill the table.
 				foreach (KeyValuePair<string, int> pair in scanner.FileCount) {
@@ -39,7 +50,10 @@ namespace ProjectStatFinder {
 				lblFileCount.Text = String.Format("{0} files", scanner.TotalFiles);
 				lblProjectSize.Text = scanner.TotalSize.ToString();
 			}
-			catch(LibGit2Sharp.RepositoryNotFoundException) { }
+			catch(LibGit2Sharp.RepositoryNotFoundException) {
+				lblStatus.ForeColor = Color.Red;
+				lblStatus.Text = "Not Found";
+			}
 			catch (FileNotFoundException) { }
 		}
 

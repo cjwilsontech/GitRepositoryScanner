@@ -31,6 +31,7 @@ namespace ProjectStatFinder {
 		}
 
 		private long totalBytes = 0;
+		/// <summary>The size of all committed project files, ignoring non-repository files.</summary>
 		public ByteSize TotalSize {
 			get {
 				return new ByteSize(totalBytes);
@@ -41,8 +42,8 @@ namespace ProjectStatFinder {
 		/// <param name="gitPath">A path to a directory where the repository is located.</param>
 		/// <exception cref="LibGit2Sharp.RepositoryNotFoundException">This exception is thrown if no repository exists at the given location.</exception>
 		/// <exception cref="FileNotFoundException">This exception is thrown if a file no longer exists, such as .</exception>
-		public async Task ScanRepository(string gitPath) {
-			await Task.Factory.StartNew(() => {
+		public Task ScanRepository(string gitPath) {
+			return Task.Factory.StartNew(() => {
 				// Open the repository.
 				Repository repo = new LibGit2Sharp.Repository(gitPath);
 
