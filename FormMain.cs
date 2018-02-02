@@ -1,18 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ProjectStatFinder {
-	public partial class Form1 : Form {
-		public Form1() {
+	public partial class FormMain : Form {
+		public FormMain() {
 			InitializeComponent();
 		}
 
@@ -28,8 +22,21 @@ namespace ProjectStatFinder {
 			}
 		}
 
-		private void getProjectStats() {
+		private async void getProjectStats() {
+			// Create a new project scanner.
+			ProjectScanner scanner = new ProjectScanner();
 
+			// Scan all repositories we want to count (just one, in this case).
+			await scanner.ScanRepository(linkPath.Text);
+
+			// Loop through the results and fill the table.
+			foreach (KeyValuePair<string, int> pair in scanner.FileCount) {
+				dataFileExtensions.Rows.Add(pair.Key, pair.Value);
+			}
+
+			// Set the labels.
+			lblFileCount.Text = String.Format("{0} files", scanner.TotalFiles);
+			lblProjectSize.Text = scanner.TotalSize.ToString();
 		}
 
 		private void linkPath_Click(object sender, EventArgs e) {
@@ -39,7 +46,7 @@ namespace ProjectStatFinder {
 			// Check if the path exists.
 			if (Directory.Exists(path)) {
 				// Attempt to open the path in explorer.
-				Process.Start("explorer.exe", path);
+				Process.Start("explorer.exe", string.Format("/select,\"{0}\"", path));
 
 			} else {
 				// Show an error message.
