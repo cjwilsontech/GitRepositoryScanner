@@ -26,17 +26,21 @@ namespace ProjectStatFinder {
 			// Create a new project scanner.
 			ProjectScanner scanner = new ProjectScanner();
 
-			// Scan all repositories we want to count (just one, in this case).
-			await scanner.ScanRepository(linkPath.Text);
+			try {
+				// Scan all repositories we want to count (just one, in this case).
+				await scanner.ScanRepository(linkPath.Text);
 
-			// Loop through the results and fill the table.
-			foreach (KeyValuePair<string, int> pair in scanner.FileCount) {
-				dataFileExtensions.Rows.Add(pair.Key, pair.Value);
+				// Loop through the results and fill the table.
+				foreach (KeyValuePair<string, int> pair in scanner.FileCount) {
+					dataFileExtensions.Rows.Add(pair.Key, pair.Value);
+				}
+
+				// Set the labels.
+				lblFileCount.Text = String.Format("{0} files", scanner.TotalFiles);
+				lblProjectSize.Text = scanner.TotalSize.ToString();
 			}
-
-			// Set the labels.
-			lblFileCount.Text = String.Format("{0} files", scanner.TotalFiles);
-			lblProjectSize.Text = scanner.TotalSize.ToString();
+			catch(LibGit2Sharp.RepositoryNotFoundException) { }
+			catch (FileNotFoundException) { }
 		}
 
 		private void linkPath_Click(object sender, EventArgs e) {

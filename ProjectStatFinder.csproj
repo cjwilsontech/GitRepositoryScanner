@@ -54,7 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FileScanner.cs" />
+    <Compile Include="RepositoryScanner.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
