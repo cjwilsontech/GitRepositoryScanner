@@ -38,6 +38,7 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
 			this.lblStatus = new System.Windows.Forms.Label();
+			this.btnRefresh = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataFileExtensions)).BeginInit();
@@ -55,6 +56,8 @@
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox1.Controls.Add(this.lblStatus);
 			this.groupBox1.Controls.Add(this.label4);
 			this.groupBox1.Controls.Add(this.linkPath);
@@ -62,7 +65,7 @@
 			this.groupBox1.Controls.Add(this.btnBrowseDirectory);
 			this.groupBox1.Location = new System.Drawing.Point(13, 13);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(362, 78);
+			this.groupBox1.Size = new System.Drawing.Size(620, 78);
 			this.groupBox1.TabIndex = 3;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Repository";
@@ -95,6 +98,7 @@
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox2.Controls.Add(this.btnRefresh);
 			this.groupBox2.Controls.Add(this.dataFileExtensions);
 			this.groupBox2.Controls.Add(this.lblProjectSize);
 			this.groupBox2.Controls.Add(this.lblFileCount);
@@ -102,7 +106,7 @@
 			this.groupBox2.Controls.Add(this.label2);
 			this.groupBox2.Location = new System.Drawing.Point(13, 97);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(362, 223);
+			this.groupBox2.Size = new System.Drawing.Size(620, 411);
 			this.groupBox2.TabIndex = 4;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Stats";
@@ -123,7 +127,7 @@
 			this.dataFileExtensions.Name = "dataFileExtensions";
 			this.dataFileExtensions.ReadOnly = true;
 			this.dataFileExtensions.RowHeadersVisible = false;
-			this.dataFileExtensions.Size = new System.Drawing.Size(189, 198);
+			this.dataFileExtensions.Size = new System.Drawing.Size(447, 386);
 			this.dataFileExtensions.TabIndex = 5;
 			// 
 			// ColFileExtension
@@ -144,11 +148,9 @@
 			// 
 			// lblProjectSize
 			// 
-			this.lblProjectSize.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.lblProjectSize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.lblProjectSize.AutoSize = true;
-			this.lblProjectSize.Location = new System.Drawing.Point(273, 41);
+			this.lblProjectSize.Location = new System.Drawing.Point(531, 41);
 			this.lblProjectSize.Name = "lblProjectSize";
 			this.lblProjectSize.Size = new System.Drawing.Size(41, 13);
 			this.lblProjectSize.TabIndex = 4;
@@ -156,11 +158,9 @@
 			// 
 			// lblFileCount
 			// 
-			this.lblFileCount.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.lblFileCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.lblFileCount.AutoSize = true;
-			this.lblFileCount.Location = new System.Drawing.Point(273, 19);
+			this.lblFileCount.Location = new System.Drawing.Point(531, 19);
 			this.lblFileCount.Name = "lblFileCount";
 			this.lblFileCount.Size = new System.Drawing.Size(34, 13);
 			this.lblFileCount.TabIndex = 3;
@@ -168,11 +168,9 @@
 			// 
 			// label3
 			// 
-			this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(201, 19);
+			this.label3.Location = new System.Drawing.Point(459, 19);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(57, 13);
 			this.label3.TabIndex = 2;
@@ -180,11 +178,9 @@
 			// 
 			// label2
 			// 
-			this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(201, 41);
+			this.label2.Location = new System.Drawing.Point(459, 41);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(66, 13);
 			this.label2.TabIndex = 0;
@@ -210,13 +206,25 @@
 			this.lblStatus.TabIndex = 5;
 			this.lblStatus.Text = "Not found";
 			// 
+			// btnRefresh
+			// 
+			this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnRefresh.Location = new System.Drawing.Point(460, 58);
+			this.btnRefresh.Name = "btnRefresh";
+			this.btnRefresh.Size = new System.Drawing.Size(75, 23);
+			this.btnRefresh.TabIndex = 6;
+			this.btnRefresh.Text = "Refresh";
+			this.btnRefresh.UseVisualStyleBackColor = true;
+			this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+			// 
 			// FormMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(386, 332);
+			this.ClientSize = new System.Drawing.Size(644, 520);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
+			this.MinimumSize = new System.Drawing.Size(300, 250);
 			this.Name = "FormMain";
 			this.Text = "Repository Stat Finder";
 			this.groupBox1.ResumeLayout(false);
@@ -245,6 +253,7 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn ColFileCount;
 		private System.Windows.Forms.Label lblStatus;
 		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.Button btnRefresh;
 	}
 }
 

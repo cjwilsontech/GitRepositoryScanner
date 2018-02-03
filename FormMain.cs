@@ -29,6 +29,8 @@ namespace ProjectStatFinder {
 
 			lblStatus.ForeColor = DefaultForeColor;
 			lblStatus.Text = "Scanning...";
+			lblFileCount.Text = "0 files";
+			lblProjectSize.Text = "0 bytes";
 
 			// Create a new project scanner.
 			ProjectScanner scanner = new ProjectScanner();
@@ -70,6 +72,10 @@ namespace ProjectStatFinder {
 				// Show an error message.
 				MessageBox.Show("Directory does not exist.", "Could not open directory", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
+		}
+
+		private void btnRefresh_Click(object sender, EventArgs e) {
+			getProjectStats();
 		}
 	}
 }
