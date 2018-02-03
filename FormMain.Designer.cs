@@ -42,10 +42,15 @@
 			this.lblFileCount = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
+			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.groupBox3.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataFileExtensions)).BeginInit();
+			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// btnBrowseDirectory
@@ -54,7 +59,7 @@
 			this.btnBrowseDirectory.Name = "btnBrowseDirectory";
 			this.btnBrowseDirectory.Size = new System.Drawing.Size(75, 23);
 			this.btnBrowseDirectory.TabIndex = 1;
-			this.btnBrowseDirectory.Text = "Browse...";
+			this.btnBrowseDirectory.Text = "&Browse...";
 			this.btnBrowseDirectory.UseVisualStyleBackColor = true;
 			this.btnBrowseDirectory.Click += new System.EventHandler(this.btnBrowseDirectory_Click);
 			// 
@@ -67,7 +72,7 @@
 			this.groupBox1.Controls.Add(this.linkPath);
 			this.groupBox1.Controls.Add(this.label1);
 			this.groupBox1.Controls.Add(this.btnBrowseDirectory);
-			this.groupBox1.Location = new System.Drawing.Point(13, 13);
+			this.groupBox1.Location = new System.Drawing.Point(12, 27);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(677, 78);
 			this.groupBox1.TabIndex = 3;
@@ -124,9 +129,9 @@
 			this.groupBox2.Controls.Add(this.lblFileCount);
 			this.groupBox2.Controls.Add(this.label3);
 			this.groupBox2.Controls.Add(this.label2);
-			this.groupBox2.Location = new System.Drawing.Point(13, 97);
+			this.groupBox2.Location = new System.Drawing.Point(13, 111);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(677, 411);
+			this.groupBox2.Size = new System.Drawing.Size(677, 397);
 			this.groupBox2.TabIndex = 4;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Stats";
@@ -140,7 +145,7 @@
 			this.groupBox3.Controls.Add(this.btnAddIgnored);
 			this.groupBox3.Location = new System.Drawing.Point(425, 106);
 			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(246, 299);
+			this.groupBox3.Size = new System.Drawing.Size(246, 285);
 			this.groupBox3.TabIndex = 7;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "Ignored file extensions";
@@ -163,29 +168,27 @@
 			this.lstIgnoredExtensions.Location = new System.Drawing.Point(87, 19);
 			this.lstIgnoredExtensions.Name = "lstIgnoredExtensions";
 			this.lstIgnoredExtensions.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-			this.lstIgnoredExtensions.Size = new System.Drawing.Size(153, 264);
+			this.lstIgnoredExtensions.Size = new System.Drawing.Size(153, 238);
 			this.lstIgnoredExtensions.Sorted = true;
 			this.lstIgnoredExtensions.TabIndex = 2;
 			// 
 			// btnRemoveIgnored
 			// 
-			this.btnRemoveIgnored.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnRemoveIgnored.Location = new System.Drawing.Point(6, 48);
 			this.btnRemoveIgnored.Name = "btnRemoveIgnored";
 			this.btnRemoveIgnored.Size = new System.Drawing.Size(75, 23);
 			this.btnRemoveIgnored.TabIndex = 1;
-			this.btnRemoveIgnored.Text = "<<";
+			this.btnRemoveIgnored.Text = "&<<";
 			this.btnRemoveIgnored.UseVisualStyleBackColor = true;
 			this.btnRemoveIgnored.Click += new System.EventHandler(this.btnRemoveIgnored_Click);
 			// 
 			// btnAddIgnored
 			// 
-			this.btnAddIgnored.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.btnAddIgnored.Location = new System.Drawing.Point(6, 19);
 			this.btnAddIgnored.Name = "btnAddIgnored";
 			this.btnAddIgnored.Size = new System.Drawing.Size(75, 23);
 			this.btnAddIgnored.TabIndex = 0;
-			this.btnAddIgnored.Text = ">>";
+			this.btnAddIgnored.Text = "&>>";
 			this.btnAddIgnored.UseVisualStyleBackColor = true;
 			this.btnAddIgnored.Click += new System.EventHandler(this.btnAddIgnored_Click);
 			// 
@@ -197,7 +200,7 @@
 			this.btnRefresh.Name = "btnRefresh";
 			this.btnRefresh.Size = new System.Drawing.Size(75, 23);
 			this.btnRefresh.TabIndex = 6;
-			this.btnRefresh.Text = "Refresh";
+			this.btnRefresh.Text = "&Refresh";
 			this.btnRefresh.UseVisualStyleBackColor = true;
 			this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
 			// 
@@ -217,7 +220,7 @@
 			this.dataFileExtensions.Name = "dataFileExtensions";
 			this.dataFileExtensions.ReadOnly = true;
 			this.dataFileExtensions.RowHeadersVisible = false;
-			this.dataFileExtensions.Size = new System.Drawing.Size(413, 386);
+			this.dataFileExtensions.Size = new System.Drawing.Size(413, 372);
 			this.dataFileExtensions.TabIndex = 5;
 			// 
 			// ColFileExtension
@@ -276,6 +279,39 @@
 			this.label2.TabIndex = 0;
 			this.label2.Text = "Counted Size:";
 			// 
+			// menuStrip1
+			// 
+			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.aboutToolStripMenuItem});
+			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+			this.menuStrip1.Name = "menuStrip1";
+			this.menuStrip1.Size = new System.Drawing.Size(701, 24);
+			this.menuStrip1.TabIndex = 5;
+			this.menuStrip1.Text = "menuStrip1";
+			// 
+			// fileToolStripMenuItem
+			// 
+			this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exitToolStripMenuItem});
+			this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+			this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+			this.fileToolStripMenuItem.Text = "&File";
+			// 
+			// exitToolStripMenuItem
+			// 
+			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.exitToolStripMenuItem.Text = "&Exit";
+			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+			// 
+			// aboutToolStripMenuItem
+			// 
+			this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+			this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+			this.aboutToolStripMenuItem.Text = "&About";
+			this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+			// 
 			// FormMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -283,16 +319,21 @@
 			this.ClientSize = new System.Drawing.Size(701, 520);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
+			this.Controls.Add(this.menuStrip1);
+			this.MainMenuStrip = this.menuStrip1;
 			this.MinimumSize = new System.Drawing.Size(300, 250);
 			this.Name = "FormMain";
-			this.Text = "Repository Stat Finder";
+			this.Text = "Repository Scanner";
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
 			this.groupBox3.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dataFileExtensions)).EndInit();
+			this.menuStrip1.ResumeLayout(false);
+			this.menuStrip1.PerformLayout();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -317,6 +358,10 @@
 		private System.Windows.Forms.ListBox lstIgnoredExtensions;
 		private System.Windows.Forms.Button btnRemoveIgnored;
 		private System.Windows.Forms.Button btnAddIgnored;
+		private System.Windows.Forms.MenuStrip menuStrip1;
+		private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
 	}
 }
 

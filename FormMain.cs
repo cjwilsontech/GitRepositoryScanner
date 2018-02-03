@@ -138,5 +138,13 @@ namespace ProjectStatFinder {
 			// Update the project stats.
 			getProjectStats();
 		}
+
+		private void exitToolStripMenuItem_Click(object sender, EventArgs e) {
+			Close();
+		}
+
+		private void aboutToolStripMenuItem_Click(object sender, EventArgs e) {
+			new FormAbout().ShowDialog();
+		}
 	}
 }
