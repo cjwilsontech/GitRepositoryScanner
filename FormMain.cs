@@ -7,6 +7,7 @@ using System.Windows.Forms;
 
 namespace ProjectStatFinder {
 	public partial class FormMain : Form {
+		private const string NO_EXTENSION = "<no extension>";
 		public FormMain() {
 			InitializeComponent();
 		}
@@ -32,13 +33,17 @@ namespace ProjectStatFinder {
 			lblFileCount.Text = "0 files";
 			lblProjectSize.Text = "0 bytes";
 
-			// Create a new project scanner.
-			ProjectScanner scanner = new ProjectScanner();
 
 			try {
-				// Scan all repositories we want to count (just one, in this case).
-				scanner.OpenRepository(linkPath.Text);
-				await scanner.Scan();
+				// Create a new project scanner.
+				ProjectScanner scanner = new ProjectScanner(linkPath.Text);
+
+				// Scan the repository.
+				List<string> ignoredExtensions = new List<string>();
+				foreach (string extension in lstIgnoredExtensions.Items) {
+					ignoredExtensions.Add((extension != NO_EXTENSION) ? extension : "");
+				}
+				await scanner.Scan(ignoredExtensions);
 
 				// Update the status of the repository.
 				lblStatus.ForeColor = Color.Green;
@@ -46,8 +51,14 @@ namespace ProjectStatFinder {
 
 				// Loop through the results and fill the table.
 				foreach (KeyValuePair<string, int> pair in scanner.FileCount) {
-					dataFileExtensions.Rows.Add(pair.Key, pair.Value);
+					string key = pair.Key;
+					if (key.Length <= 0)
+						key = NO_EXTENSION;
+
+					dataFileExtensions.Rows.Add(key, pair.Value);
 				}
+
+				// Update table display.
 				dataFileExtensions.Sort(dataFileExtensions.Columns[1], System.ComponentModel.ListSortDirection.Descending);
 				dataFileExtensions.CurrentCell = null;
 
@@ -63,7 +74,7 @@ namespace ProjectStatFinder {
 					lblStatus.Text = "Not Found";
 				} else if (e is UncommittedChangesException || e is FileNotFoundException) {
 					lblStatus.ForeColor = Color.Red;
-					lblStatus.Text = "Error. Uncommitted changes.";
+					lblStatus.Text = "Uncommitted changes found. Commit changes and try again.";
 					MessageBox.Show("Error: File not found. Try committing any changes and trying again.", "Error scanning repository", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				} else throw (e);
 			}
@@ -85,6 +96,34 @@ namespace ProjectStatFinder {
 		}
 
 		private void btnRefresh_Click(object sender, EventArgs e) {
+			getProjectStats();
+		}
+
+		private void btnRemoveIgnored_Click(object sender, EventArgs e) {
+			// Make a list of the files to delete.
+			List<string> toDelete = new List<string>();
+			foreach (string extension in lstIgnoredExtensions.SelectedItems) {
+				toDelete.Add(extension);
+			}
+
+			// Remove selected file extensions from the ignored list.
+			foreach (string extension in toDelete) {
+				lstIgnoredExtensions.Items.Remove(extension);
+			}
+
+			// Update the project stats.
+			getProjectStats();
+		}
+
+		private void btnAddIgnored_Click(object sender, EventArgs e) {
+			// Add the file extensions for selected rows.
+			foreach (DataGridViewCell cell in dataFileExtensions.SelectedCells) {
+				string extension = dataFileExtensions.Rows[cell.RowIndex].Cells[0].Value.ToString();
+				if (!lstIgnoredExtensions.Items.Contains(extension))
+					lstIgnoredExtensions.Items.Add(extension);
+			}
+
+			// Update the project stats.
 			getProjectStats();
 		}
 	}

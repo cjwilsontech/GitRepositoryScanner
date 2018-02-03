@@ -25,10 +25,17 @@
 		private void InitializeComponent() {
 			this.btnBrowseDirectory = new System.Windows.Forms.Button();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.lblStatus = new System.Windows.Forms.Label();
+			this.label4 = new System.Windows.Forms.Label();
 			this.linkPath = new System.Windows.Forms.LinkLabel();
 			this.label1 = new System.Windows.Forms.Label();
 			this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.lstIgnoredExtensions = new System.Windows.Forms.ListBox();
+			this.btnRemoveIgnored = new System.Windows.Forms.Button();
+			this.btnAddIgnored = new System.Windows.Forms.Button();
+			this.btnRefresh = new System.Windows.Forms.Button();
 			this.dataFileExtensions = new System.Windows.Forms.DataGridView();
 			this.ColFileExtension = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.ColFileCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -36,11 +43,9 @@
 			this.lblFileCount = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
-			this.label4 = new System.Windows.Forms.Label();
-			this.lblStatus = new System.Windows.Forms.Label();
-			this.btnRefresh = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
+			this.groupBox3.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataFileExtensions)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -65,10 +70,30 @@
 			this.groupBox1.Controls.Add(this.btnBrowseDirectory);
 			this.groupBox1.Location = new System.Drawing.Point(13, 13);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(620, 78);
+			this.groupBox1.Size = new System.Drawing.Size(677, 78);
 			this.groupBox1.TabIndex = 3;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Repository";
+			// 
+			// lblStatus
+			// 
+			this.lblStatus.AutoSize = true;
+			this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblStatus.ForeColor = System.Drawing.Color.Red;
+			this.lblStatus.Location = new System.Drawing.Point(46, 49);
+			this.lblStatus.Name = "lblStatus";
+			this.lblStatus.Size = new System.Drawing.Size(63, 13);
+			this.lblStatus.TabIndex = 5;
+			this.lblStatus.Text = "Not found";
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(7, 49);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(40, 13);
+			this.label4.TabIndex = 4;
+			this.label4.Text = "Status:";
 			// 
 			// linkPath
 			// 
@@ -98,6 +123,7 @@
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox2.Controls.Add(this.groupBox3);
 			this.groupBox2.Controls.Add(this.btnRefresh);
 			this.groupBox2.Controls.Add(this.dataFileExtensions);
 			this.groupBox2.Controls.Add(this.lblProjectSize);
@@ -106,10 +132,75 @@
 			this.groupBox2.Controls.Add(this.label2);
 			this.groupBox2.Location = new System.Drawing.Point(13, 97);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(620, 411);
+			this.groupBox2.Size = new System.Drawing.Size(677, 411);
 			this.groupBox2.TabIndex = 4;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Stats";
+			// 
+			// groupBox3
+			// 
+			this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox3.Controls.Add(this.lstIgnoredExtensions);
+			this.groupBox3.Controls.Add(this.btnRemoveIgnored);
+			this.groupBox3.Controls.Add(this.btnAddIgnored);
+			this.groupBox3.Location = new System.Drawing.Point(425, 106);
+			this.groupBox3.Name = "groupBox3";
+			this.groupBox3.Size = new System.Drawing.Size(246, 299);
+			this.groupBox3.TabIndex = 7;
+			this.groupBox3.TabStop = false;
+			this.groupBox3.Text = "Ignored file extensions";
+			// 
+			// lstIgnoredExtensions
+			// 
+			this.lstIgnoredExtensions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.lstIgnoredExtensions.Items.AddRange(new object[] {
+            ".editorConfig",
+            ".gitattributes",
+            ".gitignore",
+            ".gitkeep",
+            ".gradle"});
+			this.lstIgnoredExtensions.Location = new System.Drawing.Point(87, 19);
+			this.lstIgnoredExtensions.Name = "lstIgnoredExtensions";
+			this.lstIgnoredExtensions.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+			this.lstIgnoredExtensions.Size = new System.Drawing.Size(153, 264);
+			this.lstIgnoredExtensions.Sorted = true;
+			this.lstIgnoredExtensions.TabIndex = 2;
+			// 
+			// btnRemoveIgnored
+			// 
+			this.btnRemoveIgnored.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnRemoveIgnored.Location = new System.Drawing.Point(6, 48);
+			this.btnRemoveIgnored.Name = "btnRemoveIgnored";
+			this.btnRemoveIgnored.Size = new System.Drawing.Size(75, 23);
+			this.btnRemoveIgnored.TabIndex = 1;
+			this.btnRemoveIgnored.Text = "<<";
+			this.btnRemoveIgnored.UseVisualStyleBackColor = true;
+			this.btnRemoveIgnored.Click += new System.EventHandler(this.btnRemoveIgnored_Click);
+			// 
+			// btnAddIgnored
+			// 
+			this.btnAddIgnored.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.btnAddIgnored.Location = new System.Drawing.Point(6, 19);
+			this.btnAddIgnored.Name = "btnAddIgnored";
+			this.btnAddIgnored.Size = new System.Drawing.Size(75, 23);
+			this.btnAddIgnored.TabIndex = 0;
+			this.btnAddIgnored.Text = ">>";
+			this.btnAddIgnored.UseVisualStyleBackColor = true;
+			this.btnAddIgnored.Click += new System.EventHandler(this.btnAddIgnored_Click);
+			// 
+			// btnRefresh
+			// 
+			this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnRefresh.Location = new System.Drawing.Point(427, 58);
+			this.btnRefresh.Name = "btnRefresh";
+			this.btnRefresh.Size = new System.Drawing.Size(75, 23);
+			this.btnRefresh.TabIndex = 6;
+			this.btnRefresh.Text = "Refresh";
+			this.btnRefresh.UseVisualStyleBackColor = true;
+			this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
 			// 
 			// dataFileExtensions
 			// 
@@ -127,7 +218,7 @@
 			this.dataFileExtensions.Name = "dataFileExtensions";
 			this.dataFileExtensions.ReadOnly = true;
 			this.dataFileExtensions.RowHeadersVisible = false;
-			this.dataFileExtensions.Size = new System.Drawing.Size(447, 386);
+			this.dataFileExtensions.Size = new System.Drawing.Size(413, 386);
 			this.dataFileExtensions.TabIndex = 5;
 			// 
 			// ColFileExtension
@@ -150,7 +241,7 @@
 			// 
 			this.lblProjectSize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.lblProjectSize.AutoSize = true;
-			this.lblProjectSize.Location = new System.Drawing.Point(531, 41);
+			this.lblProjectSize.Location = new System.Drawing.Point(498, 41);
 			this.lblProjectSize.Name = "lblProjectSize";
 			this.lblProjectSize.Size = new System.Drawing.Size(41, 13);
 			this.lblProjectSize.TabIndex = 4;
@@ -160,7 +251,7 @@
 			// 
 			this.lblFileCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.lblFileCount.AutoSize = true;
-			this.lblFileCount.Location = new System.Drawing.Point(531, 19);
+			this.lblFileCount.Location = new System.Drawing.Point(498, 19);
 			this.lblFileCount.Name = "lblFileCount";
 			this.lblFileCount.Size = new System.Drawing.Size(34, 13);
 			this.lblFileCount.TabIndex = 3;
@@ -170,58 +261,27 @@
 			// 
 			this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(459, 19);
+			this.label3.Location = new System.Drawing.Point(426, 19);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(57, 13);
+			this.label3.Size = new System.Drawing.Size(74, 13);
 			this.label3.TabIndex = 2;
-			this.label3.Text = "File Count:";
+			this.label3.Text = "Counted Files:";
 			// 
 			// label2
 			// 
 			this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(459, 41);
+			this.label2.Location = new System.Drawing.Point(426, 41);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(66, 13);
+			this.label2.Size = new System.Drawing.Size(73, 13);
 			this.label2.TabIndex = 0;
-			this.label2.Text = "Project Size:";
-			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(7, 49);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(40, 13);
-			this.label4.TabIndex = 4;
-			this.label4.Text = "Status:";
-			// 
-			// lblStatus
-			// 
-			this.lblStatus.AutoSize = true;
-			this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblStatus.ForeColor = System.Drawing.Color.Red;
-			this.lblStatus.Location = new System.Drawing.Point(46, 49);
-			this.lblStatus.Name = "lblStatus";
-			this.lblStatus.Size = new System.Drawing.Size(63, 13);
-			this.lblStatus.TabIndex = 5;
-			this.lblStatus.Text = "Not found";
-			// 
-			// btnRefresh
-			// 
-			this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnRefresh.Location = new System.Drawing.Point(460, 58);
-			this.btnRefresh.Name = "btnRefresh";
-			this.btnRefresh.Size = new System.Drawing.Size(75, 23);
-			this.btnRefresh.TabIndex = 6;
-			this.btnRefresh.Text = "Refresh";
-			this.btnRefresh.UseVisualStyleBackColor = true;
-			this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+			this.label2.Text = "Counted Size:";
 			// 
 			// FormMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(644, 520);
+			this.ClientSize = new System.Drawing.Size(701, 520);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
 			this.MinimumSize = new System.Drawing.Size(300, 250);
@@ -231,6 +291,7 @@
 			this.groupBox1.PerformLayout();
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
+			this.groupBox3.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dataFileExtensions)).EndInit();
 			this.ResumeLayout(false);
 
@@ -254,6 +315,10 @@
 		private System.Windows.Forms.Label lblStatus;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Button btnRefresh;
+		private System.Windows.Forms.GroupBox groupBox3;
+		private System.Windows.Forms.ListBox lstIgnoredExtensions;
+		private System.Windows.Forms.Button btnRemoveIgnored;
+		private System.Windows.Forms.Button btnAddIgnored;
 	}
 }
 
