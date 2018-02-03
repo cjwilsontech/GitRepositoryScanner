@@ -13,13 +13,7 @@ namespace ProjectStatFinder {
 		private Dictionary<string, int> fileTypeCount = new Dictionary<string, int>();
 		public List<KeyValuePair<string, int>> FileCount {
 			get {
-				// Sort the list by value.
-				// Reference: https://stackoverflow.com/a/298
-				List<KeyValuePair<string, int>> result = fileTypeCount.ToList();
-				result.Sort(delegate (KeyValuePair<string, int> pair1, KeyValuePair<string, int> pair2) {
-					return pair2.Value.CompareTo(pair1.Value);
-				});
-				return result;
+				return fileTypeCount.ToList();
 			}
 		}
 

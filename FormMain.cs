@@ -47,6 +47,7 @@ namespace ProjectStatFinder {
 				foreach (KeyValuePair<string, int> pair in scanner.FileCount) {
 					dataFileExtensions.Rows.Add(pair.Key, pair.Value);
 				}
+				dataFileExtensions.Sort(dataFileExtensions.Columns[1], System.ComponentModel.ListSortDirection.Descending);
 
 				// Set the labels.
 				lblFileCount.Text = String.Format("{0} files", scanner.TotalFiles);
