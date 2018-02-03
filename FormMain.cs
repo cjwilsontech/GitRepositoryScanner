@@ -37,7 +37,8 @@ namespace ProjectStatFinder {
 
 			try {
 				// Scan all repositories we want to count (just one, in this case).
-				await scanner.ScanRepository(linkPath.Text);
+				scanner.OpenRepository(linkPath.Text);
+				await scanner.Scan();
 
 				// Update the status of the repository.
 				lblStatus.ForeColor = Color.Green;
@@ -48,16 +49,24 @@ namespace ProjectStatFinder {
 					dataFileExtensions.Rows.Add(pair.Key, pair.Value);
 				}
 				dataFileExtensions.Sort(dataFileExtensions.Columns[1], System.ComponentModel.ListSortDirection.Descending);
+				dataFileExtensions.CurrentCell = null;
 
 				// Set the labels.
 				lblFileCount.Text = String.Format("{0} files", scanner.TotalFiles);
 				lblProjectSize.Text = scanner.TotalSize.ToString();
+
+			} catch (Exception e) {
+
+				// Handle exceptions
+				if (e is LibGit2Sharp.RepositoryNotFoundException) {
+					lblStatus.ForeColor = Color.Red;
+					lblStatus.Text = "Not Found";
+				} else if (e is UncommittedChangesException || e is FileNotFoundException) {
+					lblStatus.ForeColor = Color.Red;
+					lblStatus.Text = "Error. Uncommitted changes.";
+					MessageBox.Show("Error: File not found. Try committing any changes and trying again.", "Error scanning repository", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				} else throw (e);
 			}
-			catch(LibGit2Sharp.RepositoryNotFoundException) {
-				lblStatus.ForeColor = Color.Red;
-				lblStatus.Text = "Not Found";
-			}
-			catch (FileNotFoundException) { }
 		}
 
 		private void linkPath_Click(object sender, EventArgs e) {

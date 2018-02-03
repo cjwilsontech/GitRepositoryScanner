@@ -32,20 +32,31 @@ namespace ProjectStatFinder {
 			}
 		}
 
-		/// <summary>This method scans a repository and adds its data to the list.</summary>
-		/// <param name="gitPath">A path to a directory where the repository is located.</param>
+		private Repository repo;
+
+		/// <summary>This method opens a repository for later scanning.</summary>
+		/// <param name="path">A path to the directory where the repository is located.</param>
 		/// <exception cref="LibGit2Sharp.RepositoryNotFoundException">This exception is thrown if no repository exists at the given location.</exception>
-		/// <exception cref="FileNotFoundException">This exception is thrown if a file no longer exists, such as .</exception>
-		public Task ScanRepository(string gitPath) {
+		public void OpenRepository(string path) {
+			// Open the repository.
+			repo = new LibGit2Sharp.Repository(path);
+			if (hasUncommittedChanges()) {
+				throw new UncommittedChangesException();
+			}
+		}
+
+		/// <summary>This method scans the opened repository and adds its data to the list.</summary>
+		/// <exception cref="FileNotFoundException">This exception is thrown if a file no longer exists, such as if there have been uncommitted changes.</exception>
+		public Task Scan() {
+			if (ReferenceEquals(repo, null)) return null;
+
 			return Task.Factory.StartNew(() => {
-				// Open the repository.
-				Repository repo = new LibGit2Sharp.Repository(gitPath);
 
 				// Loop through every file that is part of the repository (skips ignored).
 				foreach (IndexEntry e in repo.Index) {
-
+					string path = repo.Info.WorkingDirectory + e.Path;
 					// Get file info.
-					FileInfo file = new FileInfo(gitPath + "/" + e.Path);
+					FileInfo file = new FileInfo(path);
 					string extension = file.Extension;
 					if (extension == string.Empty)
 						extension = "<no extension>";
@@ -61,6 +72,11 @@ namespace ProjectStatFinder {
 					totalBytes += file.Length;
 				}
 			});
+		}
+
+		private bool hasUncommittedChanges() {
+			// From https://stackoverflow.com/a/30311693
+			return repo.RetrieveStatus().IsDirty;
 		}
 	}
 }
