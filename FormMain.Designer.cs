@@ -29,7 +29,6 @@
 			this.label4 = new System.Windows.Forms.Label();
 			this.linkPath = new System.Windows.Forms.LinkLabel();
 			this.label1 = new System.Windows.Forms.Label();
-			this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			this.lstIgnoredExtensions = new System.Windows.Forms.ListBox();
@@ -113,11 +112,6 @@
 			this.label1.TabIndex = 2;
 			this.label1.Text = "Path:";
 			// 
-			// folderBrowserDialog1
-			// 
-			this.folderBrowserDialog1.RootFolder = System.Environment.SpecialFolder.UserProfile;
-			this.folderBrowserDialog1.ShowNewFolderButton = false;
-			// 
 			// groupBox2
 			// 
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -157,14 +151,18 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.lstIgnoredExtensions.Items.AddRange(new object[] {
+            ".appxmanifest",
+            ".csproj",
             ".editorConfig",
             ".gitattributes",
             ".gitignore",
             ".gitkeep",
-            ".gradle"});
+            ".gradle",
+            ".sln",
+            ".vsix"});
 			this.lstIgnoredExtensions.Location = new System.Drawing.Point(87, 19);
 			this.lstIgnoredExtensions.Name = "lstIgnoredExtensions";
-			this.lstIgnoredExtensions.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+			this.lstIgnoredExtensions.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
 			this.lstIgnoredExtensions.Size = new System.Drawing.Size(153, 264);
 			this.lstIgnoredExtensions.Sorted = true;
 			this.lstIgnoredExtensions.TabIndex = 2;
@@ -194,6 +192,7 @@
 			// btnRefresh
 			// 
 			this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnRefresh.Enabled = false;
 			this.btnRefresh.Location = new System.Drawing.Point(427, 58);
 			this.btnRefresh.Name = "btnRefresh";
 			this.btnRefresh.Size = new System.Drawing.Size(75, 23);
@@ -303,7 +302,6 @@
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.LinkLabel linkPath;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
 		private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.Label lblProjectSize;
 		private System.Windows.Forms.Label lblFileCount;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.WindowsAPICodePack.Dialogs;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -8,16 +9,21 @@ using System.Windows.Forms;
 namespace ProjectStatFinder {
 	public partial class FormMain : Form {
 		private const string NO_EXTENSION = "<no extension>";
+		private CommonOpenFileDialog openFolderDialog = new CommonOpenFileDialog();
+
 		public FormMain() {
 			InitializeComponent();
+			openFolderDialog.IsFolderPicker = true;
+			openFolderDialog.Title = "Select a repository folder...";
 		}
 
 		private void btnBrowseDirectory_Click(object sender, EventArgs e) {
 			// Open the prompt to select a path.
-			if (folderBrowserDialog1.ShowDialog() == DialogResult.OK) {
+			if (openFolderDialog.ShowDialog() == CommonFileDialogResult.Ok) {
 
 				// Set the path.
-				linkPath.Text = folderBrowserDialog1.SelectedPath;
+				linkPath.Text = openFolderDialog.FileName;
+				btnRefresh.Enabled = true;
 
 				// Get the project stats.
 				getProjectStats();
@@ -27,7 +33,7 @@ namespace ProjectStatFinder {
 		private async void getProjectStats() {
 			// Clear the previous data.
 			dataFileExtensions.Rows.Clear();
-
+			
 			lblStatus.ForeColor = DefaultForeColor;
 			lblStatus.Text = "Scanning...";
 			lblFileCount.Text = "0 files";
@@ -35,6 +41,9 @@ namespace ProjectStatFinder {
 
 
 			try {
+				// Verify the directory exists.
+				if (linkPath.Text.Length <= 0 || !Directory.Exists(linkPath.Text)) throw new DirectoryNotFoundException();
+
 				// Create a new project scanner.
 				ProjectScanner scanner = new ProjectScanner(linkPath.Text);
 
@@ -76,6 +85,9 @@ namespace ProjectStatFinder {
 					lblStatus.ForeColor = Color.Red;
 					lblStatus.Text = "Uncommitted changes found. Commit changes and try again.";
 					MessageBox.Show("Error: File not found. Try committing any changes and trying again.", "Error scanning repository", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				} else if (e is DirectoryNotFoundException) {
+					lblStatus.ForeColor = Color.Red;
+					lblStatus.Text = "Not Found";
 				} else throw (e);
 			}
 		}
