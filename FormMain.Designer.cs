@@ -23,6 +23,7 @@
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
 			this.btnBrowseDirectory = new System.Windows.Forms.Button();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.lblStatus = new System.Windows.Forms.Label();
@@ -168,7 +169,7 @@
 			this.lstIgnoredExtensions.Location = new System.Drawing.Point(87, 19);
 			this.lstIgnoredExtensions.Name = "lstIgnoredExtensions";
 			this.lstIgnoredExtensions.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-			this.lstIgnoredExtensions.Size = new System.Drawing.Size(153, 238);
+			this.lstIgnoredExtensions.Size = new System.Drawing.Size(153, 264);
 			this.lstIgnoredExtensions.Sorted = true;
 			this.lstIgnoredExtensions.TabIndex = 2;
 			// 
@@ -320,8 +321,9 @@
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.menuStrip1);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MainMenuStrip = this.menuStrip1;
-			this.MinimumSize = new System.Drawing.Size(300, 250);
+			this.MinimumSize = new System.Drawing.Size(500, 450);
 			this.Name = "FormMain";
 			this.Text = "Repository Scanner";
 			this.groupBox1.ResumeLayout(false);

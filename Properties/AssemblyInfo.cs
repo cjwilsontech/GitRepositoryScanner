@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ProjectStatFinder")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Repository Scanner")]
+[assembly: AssemblyDescription("Scans a repository for committed files and presents statistics on them.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ProjectStatFinder")]
+[assembly: AssemblyProduct("Repository Scanner")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

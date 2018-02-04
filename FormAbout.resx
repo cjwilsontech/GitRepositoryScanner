@@ -117,9 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="richTextBox1.Text" xml:space="preserve">
-    <value>Written by Curtis (CJ) Wilson during the Harding University's Computer Science Capstone class of Spring 2018.
-
-Scans files that are part of a given Git repository and presents statistics on committed files.</value>
-  </data>
 </root>
